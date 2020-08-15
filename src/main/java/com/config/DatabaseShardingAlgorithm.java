@@ -1,13 +1,15 @@
 package com.config;
+
 import com.dangdang.ddframe.rdb.sharding.api.ShardingValue;
 import com.dangdang.ddframe.rdb.sharding.api.strategy.database.SingleKeyDatabaseShardingAlgorithm;
+import com.database.Database0Config;
+import com.database.Database1Config;
 import com.google.common.collect.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
-
 
 /**
  * 这里使用的都是单键分片策略
@@ -16,7 +18,8 @@ import java.util.LinkedHashSet;
  * 其余使用database1库
  */
 @Component
-public class DatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm<Long>{
+public class DatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm<Long> {
+
     @Autowired
     private Database0Config database0Config;
 

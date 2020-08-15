@@ -16,6 +16,7 @@ import java.util.LinkedHashSet;
  */
 @Component
 public class TableShardingAlgorithm implements SingleKeyTableShardingAlgorithm<Long> {
+
     @Override
     public String doEqualSharding(final Collection<String> tableNames, final ShardingValue<Long> shardingValue) {
         for (String each : tableNames) {

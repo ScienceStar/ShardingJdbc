@@ -1,5 +1,8 @@
-package com.config;
+package com.database;
 
+
+import com.config.DatabaseShardingAlgorithm;
+import com.config.TableShardingAlgorithm;
 import com.dangdang.ddframe.rdb.sharding.api.ShardingDataSourceFactory;
 import com.dangdang.ddframe.rdb.sharding.api.rule.DataSourceRule;
 import com.dangdang.ddframe.rdb.sharding.api.rule.ShardingRule;
@@ -11,7 +14,6 @@ import com.dangdang.ddframe.rdb.sharding.keygen.KeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -20,15 +22,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @ClassName DataSourceConfig
- * @Description: TODO
- * @Author lxc
- * @Date 2020/8/15 22:03
- * @Version V1.0
- **/
+ * @author yangyang
+ * @date 2019/1/29
+ */
 @Configuration
-@Component
 public class DataSourceConfig {
+
     @Autowired
     private Database0Config database0Config;
 
@@ -65,8 +64,8 @@ public class DataSourceConfig {
         ShardingRule shardingRule = ShardingRule.builder()
                 .dataSourceRule(dataSourceRule)
                 .tableRules(Arrays.asList(orderTableRule))
-                .databaseShardingStrategy(new DatabaseShardingStrategy("goods_id", databaseShardingAlgorithm))
-                .tableShardingStrategy(new TableShardingStrategy("goods_type", tableShardingAlgorithm)).build();
+                .databaseShardingStrategy(new DatabaseShardingStrategy("goodsId", databaseShardingAlgorithm))
+                .tableShardingStrategy(new TableShardingStrategy("goodsType", tableShardingAlgorithm)).build();
         DataSource dataSource = ShardingDataSourceFactory.createDataSource(shardingRule);
         return dataSource;
     }
@@ -76,4 +75,5 @@ public class DataSourceConfig {
     public KeyGenerator keyGenerator() {
         return new DefaultKeyGenerator();
     }
+
 }
