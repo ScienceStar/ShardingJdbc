@@ -64,8 +64,8 @@ public class DataSourceConfig {
         ShardingRule shardingRule = ShardingRule.builder()
                 .dataSourceRule(dataSourceRule)
                 .tableRules(Arrays.asList(orderTableRule))
-                .databaseShardingStrategy(new DatabaseShardingStrategy("goodsId", databaseShardingAlgorithm))
-                .tableShardingStrategy(new TableShardingStrategy("goodsType", tableShardingAlgorithm)).build();
+                .databaseShardingStrategy(new DatabaseShardingStrategy("goods_id", databaseShardingAlgorithm))
+                .tableShardingStrategy(new TableShardingStrategy("goods_type", tableShardingAlgorithm)).build();
         DataSource dataSource = ShardingDataSourceFactory.createDataSource(shardingRule);
         return dataSource;
     }
